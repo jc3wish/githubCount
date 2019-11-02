@@ -1,0 +1,78 @@
+
+{{template "header" .}}
+
+<div class="ibox float-e-margins" >
+    <div class="row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4"></div>
+    </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>流量趋势图
+                        </h5>
+                        <div style="float: left; margin-top: -10px; margin-left: 10px">
+                            <select class="form-control" id="ProjectName">
+                                {{range $i, $p := .ProjectList}}
+                                    <option value="{{$p.Id}}"> {{$p.Name}} </option>
+                                {{end}}
+                            </select>
+
+                        </div>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+                        <div class="ibox-tools" style="width: auto; padding-right:8px;">
+							<select class="form-control" style=" margin-top:-8px;" id="data_display_format">
+                            	<option value="increment" selected="selected">增量</option>
+                            	<option value="full">全量</option>
+                            </select>
+                        </div>                                 
+                </div>
+                    
+                    <div class="ibox-content">
+                        <div class="echarts" id="morris-line-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+</div>
+
+
+{{template "footer" .}}
+
+<script src="/js/echarts.min.js"></script>
+<script src="/js/flow.js"></script>
+<script type="text/javascript">
+    var flowObj = Object.create(FlowClass)
+    flowObj.setCanvasId("morris-line-chart");
+
+    flowObj.setProjectId($("#ProjectName").val());
+
+	$(function(){
+        $("#ProjectName").change(
+                function(){
+                    flowObj.getFlowData();
+                }
+        );
+		$("#data_display_format").change(
+			function(){
+                flowObj.setDisplayFormat($(this).val());
+                flowObj.getFlowData();
+			}
+		);
+	});
+
+    flowObj.getFlowData();
+
+</script>
