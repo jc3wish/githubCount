@@ -65,7 +65,9 @@ func initLog(){
 
 func initParam(){
 	os.MkdirAll(config.DataDir,0700)
-	config.DataDir = *DataDir
+	if *DataDir != ""{
+		config.DataDir = *DataDir
+	}
 	if *Port > 0{
 		config.Listen = "0.0.0.0:"+fmt.Sprint(*Port)
 	}
@@ -86,6 +88,7 @@ func WritePid(){
 }
 
 func main()  {
+	ConfigInit()
 	initParam()
 	if Daemon == true && runtime.GOOS != "windows"{
 		if os.Getppid() != 1{
