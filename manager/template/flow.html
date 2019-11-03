@@ -62,12 +62,13 @@
 	$(function(){
         $("#ProjectName").change(
                 function(){
+                    flowObj.setProjectId($("#ProjectName").val());
                     flowObj.getFlowData();
                 }
         );
 		$("#data_display_format").change(
 			function(){
-                flowObj.setDisplayFormat($(this).val());
+                flowObj.setDisplayFormat($("#data_display_format").val());
                 flowObj.getFlowData();
 			}
 		);
