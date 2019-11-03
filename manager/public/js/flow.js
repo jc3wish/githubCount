@@ -135,7 +135,7 @@ var FlowClass  = {
         var a = this.init_data();
 
         for( var i in d){
-            a.xAxis[0].data.push(d[i].time);
+            a.xAxis[0].data.push(d[i].Add_time);
             a.series[0].data.push(d[i].Subscribers_count);
             a.series[1].data.push(d[i].Stargazers_count);
             a.series[2].data.push(d[i].Forks_count);
@@ -167,7 +167,7 @@ var FlowClass  = {
                     tForks_count = 0;
                 }
                 data.push({
-                    time: this.TimeFormat(d[s].Time),
+                    time: this.TimeFormat(d[s].Add_time),
                     Subscribers_count: tSubscribers_count,
                     Stargazers_count: tStargazers_count,
                     Forks_count: tForks_count,
@@ -180,7 +180,7 @@ var FlowClass  = {
                 Stargazers_count = 0;
                 Forks_count = 0;
             }
-            lasttime = d[s].Time;
+            lasttime = d[s].Add_time;
         }
         return data;
     },
@@ -188,9 +188,9 @@ var FlowClass  = {
     fullData: function (d) {
         var data = [];
         for (s in d) {
-            if (d[s].Time != "") {
+            if (d[s].Add_time != "") {
                 data.push({
-                    time: this.TimeFormat(d[s].Time),
+                    time: this.TimeFormat(d[s].Add_time),
                     Subscribers_count: d[s].Subscribers_count,
                     Stargazers_count: d[s].Stargazers_count,
                     Forks_count: d[s].Forks_count,
