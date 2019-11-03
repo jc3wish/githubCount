@@ -167,7 +167,7 @@ var FlowClass  = {
                     tForks_count = 0;
                 }
                 data.push({
-                    time: this.TimeFormat(d[s].Add_time),
+                    Add_time: this.TimeFormat(d[s].Add_time),
                     Subscribers_count: tSubscribers_count,
                     Stargazers_count: tStargazers_count,
                     Forks_count: tForks_count,
@@ -190,7 +190,7 @@ var FlowClass  = {
         for (s in d) {
             if (d[s].Add_time != "") {
                 data.push({
-                    time: this.TimeFormat(d[s].Add_time),
+                    Add_time: this.TimeFormat(d[s].Add_time),
                     Subscribers_count: d[s].Subscribers_count,
                     Stargazers_count: d[s].Stargazers_count,
                     Forks_count: d[s].Forks_count,
